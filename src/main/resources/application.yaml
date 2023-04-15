@@ -1,0 +1,17 @@
+
+server:
+  port: 8380
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5430/e-comDB
+    username: postgres
+    password: mwas
+    driverClassName: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+  application:
+    name: ORDER-SERVICE
