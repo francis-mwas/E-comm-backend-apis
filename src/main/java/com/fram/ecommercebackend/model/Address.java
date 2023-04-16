@@ -1,7 +1,7 @@
 package com.fram.ecommercebackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 /**
  * Address for the user to be billed/delivered to.
