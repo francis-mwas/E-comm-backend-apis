@@ -1,9 +1,12 @@
 package com.fram.ecommercebackend.service;
+import com.fram.ecommercebackend.api.model.LoginBody;
 import com.fram.ecommercebackend.api.model.RegistrationBody;
 import com.fram.ecommercebackend.exception.UserAlreadyExistsException;
 import com.fram.ecommercebackend.model.LocalUser;
 import com.fram.ecommercebackend.model.dao.LocalUserDao;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 
 @Service
@@ -32,5 +35,13 @@ public class UserService {
         user.setLastName(registrationBody.getLastname());
         user.setPassword(encryptionService.encryptPassword(registrationBody.getPassword()));
         return localUserDao.save(user);
+    }
+
+    public String loginUser(LoginBody loginBody){
+        Optional<LocalUser> localUser = localUserDao.findByUsernameIgnoreCase(loginBody.getUsername());
+        if(localUser.isPresent()){
+
+        }
+        return  null;
     }
 }
