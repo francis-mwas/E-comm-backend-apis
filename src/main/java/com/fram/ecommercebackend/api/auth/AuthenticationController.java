@@ -1,6 +1,8 @@
 package com.fram.ecommercebackend.api.auth;
 
 
+import com.fram.ecommercebackend.api.model.LoginBody;
+import com.fram.ecommercebackend.api.model.LoginResponse;
 import com.fram.ecommercebackend.api.model.RegistrationBody;
 import com.fram.ecommercebackend.exception.UserAlreadyExistsException;
 import com.fram.ecommercebackend.service.UserService;
@@ -31,5 +33,18 @@ public class AuthenticationController {
         } catch (UserAlreadyExistsException e) {
            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity loginUser(@Valid @RequestBody LoginBody loginBody){
+        String jwt = userService.loginUser(loginBody);
+        if(jwt == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }else{
+            LoginResponse loginResponse = new LoginResponse();
+            loginResponse.setJwt(jwt);
+            return ResponseEntity.ok(loginResponse);
+        }
+
     }
 }

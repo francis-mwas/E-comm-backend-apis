@@ -20,3 +20,14 @@ spring:
 encryption:
   salt:
     rounds: 10
+
+
+
+
+jwt:
+  algorithm:
+    key: springbootjava
+
+  issuer: springbootecomapp
+
+  expiryInSeconds: 604800
