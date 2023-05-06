@@ -5,13 +5,12 @@ import com.fram.ecommercebackend.api.model.LoginBody;
 import com.fram.ecommercebackend.api.model.LoginResponse;
 import com.fram.ecommercebackend.api.model.RegistrationBody;
 import com.fram.ecommercebackend.exception.UserAlreadyExistsException;
+import com.fram.ecommercebackend.model.LocalUser;
 import com.fram.ecommercebackend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -46,5 +45,10 @@ public class AuthenticationController {
             return ResponseEntity.ok(loginResponse);
         }
 
+    }
+
+    @GetMapping("/me")
+    public LocalUser getUserLoggedInProfile(@AuthenticationPrincipal LocalUser user){
+        return user;
     }
 }
