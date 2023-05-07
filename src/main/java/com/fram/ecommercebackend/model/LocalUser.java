@@ -29,6 +29,7 @@ public class LocalUser {
     /**
      * The encrypted password of the user.
      */
+    @JsonIgnore
     @Column(name = "password", nullable = false, length = 1000)
     private String password;
     /**
@@ -49,6 +50,7 @@ public class LocalUser {
     /**
      * The addresses associated with the user.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 
